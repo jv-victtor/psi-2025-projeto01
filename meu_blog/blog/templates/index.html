@@ -1,61 +1,46 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Importa Tailwind CSS via CDN para estilização rápida e responsiva -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Configuração de fonte e estilo de fundo */
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f8f8f8; /* Fundo cinza claro */
-            color: #1f2937; /* Texto escuro */
-        }
-    </style>
-    <title>{{ page_title }} | {{ site_info.titulo_site }}</title>
-</head>
-<body>
-    <!-- HEADER e MENU GLOBAL -->
-    <header class="bg-indigo-700 shadow-lg fixed w-full z-10">
-        <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <!-- Nome do Site/Marca -->
-                <div class="flex-shrink-0">
-                    <a href="{% url 'home' %}" class="text-white text-2xl font-bold tracking-wider rounded-md hover:text-indigo-200 transition duration-300">{{ site_info.titulo_site }}</a>
-                </div>
-                
-                <!-- Links do Menu -->
-                <div class="flex space-x-4">
-                    <a href="{% url 'home' %}" class="text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-indigo-600 transition duration-300">Início</a>
-                    <a href="{% url 'equipe' %}" class="text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-indigo-600 transition duration-300">Equipe/Elenco</a>
-                    <a href="{% url 'sobre' %}" class="text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-indigo-600 transition duration-300">Sobre</a>
-                </div>
-            </div>
-        </nav>
-    </header>
+{% extends "base.html" %}
 
-    <!-- CONTEÚDO ESPECÍFICO DA PÁGINA -->
-    <main class="pt-20 pb-12 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 min-h-screen">
-        {% block content %}
-        <!-- Este bloco será preenchido pelo template filho (index.html, equipe.html, sobre.html) -->
-        {% endblock content %}
-    </main>
+{% block content %}
+<section class="text-center py-10 bg-white rounded-xl shadow-lg mb-8">
+    <h1 class="text-5xl font-extrabold text-indigo-800 mb-4">Bem-vindo ao {{ site_info.titulo_site }}</h1>
+    <p class="text-xl text-gray-600 max-w-3xl mx-auto">A lenda renasce: mais do que um time, uma paixão.</p>
+</section>
 
-    <!-- FOOTER GLOBAL -->
-    <footer class="bg-gray-800 text-white p-6 mt-10">
-        <div class="max-w-6xl mx-auto text-center">
-            <p class="text-sm mb-2">
-                &copy; {{ site_info.ano_copyright }} {{ site_info.titulo_site }}. Todos os direitos reservados.
-            </p>
-            <p class="text-xs text-gray-400">
-                Desenvolvido por {{ site_info.autor_projeto }} | Contato: {{ site_info.email_contato }}
-            </p>
-            <p class="text-xs text-gray-400 mt-1">
-                Projeto de Webdesign para fins didáticos.
-            </p>
+<!-- Seção de Imagens e Destaques -->
+<div class="grid md:grid-cols-2 gap-8 mb-12">
+    <!-- Imagem de Destaque 1 -->
+    <div class="rounded-xl overflow-hidden shadow-2xl transition duration-500 hover:scale-[1.02]">
+        <img src="https://placehold.co/800x450/374151/ffffff?text=Estádio+Lendário" alt="" class="w-full h-auto object-cover">
+        <div class="p-5 bg-white">
+            <h2 class="text-2xl font-bold text-gray-800">Nosso Templo: O Estádio</h2>
+            <p class="text-gray-600 mt-2">O palco das grandes vitórias. Um caldeirão de emoções que empurra o time a cada partida. Nossa casa é a nossa força.</p>
         </div>
-    </footer>
-</body>
-</html>
+    </div>
+
+    <!-- Imagem de Destaque 2 -->
+    <div class="rounded-xl overflow-hidden shadow-2xl transition duration-500 hover:scale-[1.02]">
+        <img src="https://placehold.co/800x450/374151/ffffff?text=Torcida+Apaixonada" alt="" class="w-full h-auto object-cover">
+        <div class="p-5 bg-white">
+            <h2 class="text-2xl font-bold text-gray-800">A Força da Torcida</h2>
+            <p class="text-gray-600 mt-2">A maior do Brasil! O Arsenal dos Sonhos FC é movido por uma paixão inigualável que nos acompanha em todos os cantos do mundo.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Seção de Histórico -->
+<section class="bg-white p-8 rounded-xl shadow-lg">
+    <h2 class="text-4xl font-bold text-indigo-700 border-b-4 border-indigo-500 pb-2 mb-6">Histórico do Clube</h2>
+    
+    <article class="space-y-6 text-lg text-gray-700">
+        <p>
+            Fundado em 1985 com a promessa de um futebol-arte inovador, o Arsenal dos Sonhos FC rapidamente se estabeleceu como uma potência nacional. A primeira década foi marcada por títulos estaduais e a consolidação de uma base de fãs leais, atraídos pela filosofia de jogo ofensiva e pelo foco no desenvolvimento de jovens talentos.
+        </p>
+        <p>
+            O grande auge veio nos anos 2000, com a conquista de 5 Campeonatos Nacionais e a histórica Taça Continental em 2007. O time daquela época, liderado pelo lendário "Capitão Fantástico", é lembrado até hoje por sua coesão tática e brilhantismo individual.
+        </p>
+        <p>
+            Atualmente, o clube passa por uma fase de reconstrução ambiciosa, investindo pesado em tecnologia de treinamento e na formação de um novo elenco estelar (confira na página Equipe!). A meta é clara: voltar ao topo do pódio internacional e trazer a glória de volta para a nossa nação de torcedores. O futuro é agora.
+        </p>
+    </article>
+</section>
+{% endblock content %}
