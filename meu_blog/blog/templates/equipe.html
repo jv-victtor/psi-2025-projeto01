@@ -11,9 +11,10 @@
     
     {% for atleta in elenco %}
     <div class="bg-white rounded-xl shadow-2xl overflow-hidden transform hover:shadow-indigo-400 transition duration-300">
-        
         <!-- Foto do Atleta -->
-        
+        <div class="w-full h-56 overflow-hidden bg-gray-100">
+            <img src="{{ atleta.foto_url }}" alt="Foto de {{ atleta.nome }}" class="w-full h-full object-cover">
+        </div>
         <div class="p-5">
             <!-- Nome e Idade -->
             <h2 class="text-2xl font-bold text-gray-900 mb-1">{{ atleta.nome }} <span class="text-sm font-normal text-indigo-600">({{ atleta.idade }} anos)</span></h2>

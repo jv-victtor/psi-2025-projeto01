@@ -1,18 +1,13 @@
 from django.shortcuts import render
 
-# --- Dicionários de Dados ---
-
-# Informações do Site e Autores (para Sobre e Footer)
 SITE_INFO = {
     "titulo_site": "Arsenal dos Sonhos FC",
-    "autor_projeto": "Gemini - IA",
-    "email_contato": "contato@arsenaldossonhos.com.br",
+    "autor_projeto": "Victor",
+    "email_contato": "joaovictoralvesdacosta@gmail.com",
     "ano_copyright": "2024",
     "descricao_site": "Site oficial dedicado à divulgação e ao histórico do Arsenal dos Sonhos Futebol Clube, a equipe que está reescrevendo a história do futebol.",
 }
 
-# Dados dos 11 Atletas (para Equipe/Elenco)
-# Observação: Usamos URLs de placeholder para simular fotos.
 ELENCO_DATA = [
     {"nome": "Ricardo 'Falcão'", "idade": 30, "posicao": "Goleiro", "nascimento": "Porto Alegre, RS", "foto_url": "https://placehold.co/400x400/1e293b/ffffff?text=FALCÃO"},
     {"nome": "Marcos 'Muro'", "idade": 28, "posicao": "Zagueiro", "nascimento": "São Paulo, SP", "foto_url": "https://placehold.co/400x400/1e293b/ffffff?text=MURO"},
@@ -27,12 +22,10 @@ ELENCO_DATA = [
     {"nome": "Rafa 'Magia'", "idade": 22, "posicao": "Ponta Esquerda", "nascimento": "Brasília, DF", "foto_url": "https://placehold.co/400x400/1e293b/ffffff?text=MAGIA"},
 ]
 
-# --- Funções de View ---
-
 def home(request):
     """Renderiza a página inicial."""
     context = {
-        'site_info': SITE_INFO, # Passa info para uso no template, se necessário
+        'site_info': SITE_INFO,
         'page_title': "Início",
     }
     return render(request, 'index.html', context)
