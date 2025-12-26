@@ -11,4 +11,8 @@ urlpatterns = [
     
     # Rota para a página sobre o site
     path('sobre/', views.sobre, name='sobre'),
+    
+    # Rotas para editar e deletar atletas
+    path('equipe/editar/<int:pk>/', views.editar_atleta, name='editar_atleta'),
+    path('equipe/deletar/<int:pk>/', views.deletar_atleta, name='deletar_atleta'),
 ]

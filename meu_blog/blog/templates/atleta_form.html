@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="max-w-2xl mx-auto bg-white p-6 rounded-xl shadow-lg">
+    <h1 class="text-2xl font-bold mb-4">{{ page_title }}</h1>
+    <form method="post" novalidate>
+        {% csrf_token %}
+        <div class="grid grid-cols-1 gap-4">
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Nome</label>
+                {{ form.nome }}
+                {% if form.nome.errors %}<p class="text-red-600 text-sm">{{ form.nome.errors }}</p>{% endif %}
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Idade</label>
+                {{ form.idade }}
+                {% if form.idade.errors %}<p class="text-red-600 text-sm">{{ form.idade.errors }}</p>{% endif %}
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Posição</label>
+                {{ form.posicao }}
+                {% if form.posicao.errors %}<p class="text-red-600 text-sm">{{ form.posicao.errors }}</p>{% endif %}
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Local de Nascimento</label>
+                {{ form.nascimento }}
+                {% if form.nascimento.errors %}<p class="text-red-600 text-sm">{{ form.nascimento.errors }}</p>{% endif %}
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">URL da Foto</label>
+                {{ form.foto_url }}
+                {% if form.foto_url.errors %}<p class="text-red-600 text-sm">{{ form.foto_url.errors }}</p>{% endif %}
+            </div>
+        </div>
+        <div class="mt-4">
+            <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded">Salvar</button>
+            <a href="{% url 'equipe' %}" class="ml-2 text-sm text-gray-600 hover:underline">Cancelar</a>
+        </div>
+    </form>
+</section>
+{% endblock content %}

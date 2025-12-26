@@ -6,6 +6,60 @@
     <p class="text-lg text-gray-600">Conheça os 11 atletas que defendem as cores do Arsenal dos Sonhos FC.</p>
 </section>
 
+<!-- Botão para mostrar/ocultar o formulário de adicionar jogador -->
+<div class="max-w-6xl mx-auto mt-6 px-4">
+    <button id="toggleFormBtn" class="bg-indigo-600 text-white px-4 py-2 rounded shadow hover:bg-indigo-500">Adicionar Jogador</button>
+    <div id="addForm" class="mt-4 hidden bg-white p-6 rounded-xl shadow-lg">
+        <form method="post" novalidate>
+            {% csrf_token %}
+            {% if form.non_field_errors %}
+                <div class="text-red-600 mb-2">{{ form.non_field_errors }}</div>
+            {% endif %}
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Nome</label>
+                    {{ form.nome }}
+                    {% if form.nome.errors %}<p class="text-red-600 text-sm">{{ form.nome.errors }}</p>{% endif %}
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Idade</label>
+                    {{ form.idade }}
+                    {% if form.idade.errors %}<p class="text-red-600 text-sm">{{ form.idade.errors }}</p>{% endif %}
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Posição</label>
+                    {{ form.posicao }}
+                    {% if form.posicao.errors %}<p class="text-red-600 text-sm">{{ form.posicao.errors }}</p>{% endif %}
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Local de Nascimento</label>
+                    {{ form.nascimento }}
+                    {% if form.nascimento.errors %}<p class="text-red-600 text-sm">{{ form.nascimento.errors }}</p>{% endif %}
+                </div>
+                <div class="md:col-span-2">
+                    <label class="block text-sm font-medium text-gray-700">URL da Foto</label>
+                    {{ form.foto_url }}
+                    {% if form.foto_url.errors %}<p class="text-red-600 text-sm">{{ form.foto_url.errors }}</p>{% endif %}
+                </div>
+            </div>
+            <div class="mt-4">
+                <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-500">Salvar Jogador</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+    const btn = document.getElementById('toggleFormBtn');
+    const form = document.getElementById('addForm');
+    btn.addEventListener('click', function(){
+        form.classList.toggle('hidden');
+        form.scrollIntoView({behavior: 'smooth'});
+    });
+});
+</script>
+
 <!-- GRID RESPONSIVO DE ATLETAS -->
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
     
@@ -28,6 +82,11 @@
                     <span class="font-medium text-gray-800">Local de Nascimento:</span> 
                     {{ atleta.nascimento }}
                 </p>
+            </div>
+            <!-- Ações: Editar / Deletar -->
+            <div class="mt-4 flex gap-2">
+                <a href="{% url 'editar_atleta' atleta.pk %}" class="bg-yellow-400 text-black px-3 py-1 rounded hover:brightness-95">Editar</a>
+                <a href="{% url 'deletar_atleta' atleta.pk %}" class="bg-red-500 text-white px-3 py-1 rounded hover:brightness-95">Deletar</a>
             </div>
         </div>
     </div>
