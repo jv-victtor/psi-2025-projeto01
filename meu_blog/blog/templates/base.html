@@ -36,11 +36,35 @@
         </nav>
     </header>
 
-    <!-- CONTEÚDO ESPECÍFICO DA PÁGINA -->
-    <main class="pt-20 pb-12 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 min-h-screen">
-        {% block content %}
-        <!-- Este bloco será preenchido pelo template filho (index.html, equipe.html, sobre.html) -->
-        {% endblock content %}
+    <!-- CONTEÚDO ESPECÍFICO DA PÁGINA + SIDEBAR -->
+    <main class="pt-20 pb-12 min-h-screen">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <!-- SIDEBAR -->
+                <aside class="md:col-span-1 bg-white rounded-xl shadow-lg p-5">
+                    <div class="mb-4">
+                        <h3 class="text-lg font-bold text-gray-800">Navegação</h3>
+                        <ul class="mt-3 space-y-2 text-sm">
+                            <li><a href="{% url 'home' %}" class="text-indigo-600 hover:underline">Início</a></li>
+                            <li><a href="{% url 'equipe' %}" class="text-indigo-600 hover:underline">Equipe/Elenco</a></li>
+                            <li><a href="{% url 'sobre' %}" class="text-indigo-600 hover:underline">Sobre</a></li>
+                            <li><a href="{% url 'tarefas' %}" class="text-indigo-600 hover:underline">Tarefas</a></li>
+                        </ul>
+                    </div>
+                    <div class="text-sm text-gray-700">
+                        <p class="font-medium">Sobre</p>
+                        <p class="text-gray-600 mt-1">{{ site_info.descricao_site }}</p>
+                    </div>
+                </aside>
+
+                <!-- CONTEÚDO PRINCIPAL -->
+                <section class="md:col-span-3">
+                    {% block content %}
+                    <!-- Este bloco será preenchido pelo template filho (index.html, equipe.html, sobre.html) -->
+                    {% endblock content %}
+                </section>
+            </div>
+        </div>
     </main>
 
     <!-- FOOTER GLOBAL -->

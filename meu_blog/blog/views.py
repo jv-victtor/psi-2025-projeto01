@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from .models import SiteInfo, Atleta
 from .forms import AtletaForm
 from django.shortcuts import get_object_or_404
+from .models import Tarefa
+from django.views.decorators.http import require_POST
 
 
 def _get_site_info():
@@ -73,3 +75,15 @@ def deletar_atleta(request, pk):
         return redirect('equipe')
 
     return render(request, 'atleta_confirm_delete.html', {'atleta': atleta, 'site_info': _get_site_info(), 'page_title': 'Deletar Atleta'})
+
+
+def tarefas(request):
+    """Exibe a lista de tarefas criadas no admin (ou por API futura)."""
+    site_info = _get_site_info()
+    lista = Tarefa.objects.order_by('-criado_em')
+    context = {
+        'site_info': site_info,
+        'tarefas': lista,
+        'page_title': 'Tarefas',
+    }
+    return render(request, 'tasks.html', context)

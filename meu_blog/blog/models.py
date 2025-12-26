@@ -29,3 +29,24 @@ class Atleta(models.Model):
 
 	def __str__(self):
 		return self.nome
+
+
+class Tarefa(models.Model):
+	PENDENTE = 'pendente'
+	CONCLUIDO = 'concluido'
+	STATUS_CHOICES = [
+		(PENDENTE, 'Pendente'),
+		(CONCLUIDO, 'Concluído'),
+	]
+
+	titulo = models.CharField(max_length=200)
+	descricao = models.TextField(blank=True)
+	status = models.CharField(max_length=20, choices=STATUS_CHOICES, default=PENDENTE)
+	criado_em = models.DateTimeField(auto_now_add=True)
+
+	class Meta:
+		verbose_name = "Tarefa"
+		verbose_name_plural = "Tarefas"
+
+	def __str__(self):
+		return self.titulo
